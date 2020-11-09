@@ -16,8 +16,8 @@ int main() {
 	printf("strcpy %s\n", strcpy(dst, src));
 	printf("-------------------------------------\n");
 
-	char *src1 = "12345";
-	char *src2 = "12346";
+	char *src1 = "1";
+	char *src2 = "1";
 	printf("%d\n", ft_strcmp(src1, src2));
 	printf("%d\n", strcmp(src1, src2));
 	printf("-------------------------------------\n");
@@ -39,5 +39,10 @@ int main() {
 	printf("ft_ errno %d\n", errno);
 	printf("ft_read buf %s\n", buf);
 	close(fd);
+	printf("-------------------------------------\n");
+
+//	char *str = ft_strdup("Azaza");
+	printf("Strdup %s\n", ft_strdup("Azaza"));
+
     return (0);
 }
