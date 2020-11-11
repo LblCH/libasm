@@ -9,50 +9,47 @@
 
 void	printf_list(t_list *list)
 {
+	int i;
+
+	i = 1;
 	while (list)
 	{
-		printf("%s\n", list->data);
+		printf("Element # %d : %s\n", i++, list->data);
 		list = list->next;
 	}
 }
 
-//int		cmp(void *a, void *b) { return (1); }
-//
-//void	foo(t_list **list) {
-//	t_list**	begin = list;
-//
-//	t_list*		current = *begin;
-//	while (1) {
-//		if (current->next == 0)
-//			return ;
-//		if (ft_strcmp(current->data, current->next->data) > 0) {
-//			void* temp =
-//		}
-//	}
-//}
-
-int 	qwe(void* q, void* e) {
-	(void )q;
-	(void )e;
-	return (-1);
+void	ft_free_fnc(void *ptr)
+{
+	if (ptr)
+		free(ptr);
 }
 
 int		main(void)
 {
-	t_list list;
-	list.data = strdup("1");
-	list.next = NULL;
-	printf("list size = %d\n", ft_list_size(&list));
-
-	t_list *list1 = &list;
+	t_list *list1 = NULL;
+	ft_list_push_front(&list1, strdup("1"));
 	ft_list_push_front(&list1, strdup("2"));
-	ft_list_push_front(&list1, strdup("3"));
+	ft_list_push_front(&list1, strdup("5"));
 	ft_list_push_front(&list1, strdup("4"));
-	printf("list size = %d\n", ft_list_size(list1));
-	printf_list(list1);
-	ft_list_sort(&list1, &ft_strcmp);
-	printf_list(list1);
+	ft_list_push_front(&list1, strdup("5"));
 
-//	printf("%d\n", ft_atoi_base("     -114983fsifo5723", "0123456789"));
+	printf("------------ft_list_size----------------\n");
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
+	printf("------------ft_list_push_front----------\n");
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
+	printf_list(list1);
+	printf("------------ft_list_sort----------------\n");
+	ft_list_sort(&list1, &ft_strcmp);
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
+	printf_list(list1);
+	printf("------------ft_list_remove_if-----------\n");
+	ft_list_remove_if(&list1, "1", ft_strcmp, ft_free_fnc);
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
+	printf_list(list1);
+	printf("------------ft_atoi_base----------------\n");
+	char *str = "  -114983fsifo5723";
+	char *base = "0123456789";
+	printf("String %s in base %s = %d\n", str, base, ft_atoi_base(str, base));
 	return (0);
 }

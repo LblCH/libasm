@@ -97,10 +97,7 @@ _ft_atoi_base:											; rdi = *str rsi = *base
 						jmp		.is_in_base
 
 .add:
-					;	push	r9
-						mul		r9						; res *= base_len
-					;	mov		rax, r9					; rax = res
-					;	pop		r9
+						mul		r9
 						add		rax, rbx				; res += j
 						inc		rcx						; i++
 						jmp		.zero_base

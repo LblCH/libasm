@@ -4,6 +4,8 @@
 _ft_list_sort:								; rdi = **list rsi = *cmp(d1, d2)
 					cmp		rdi, 0			; !list
 					je		.return
+					cmp		qword [rdi], 0
+					je		.return
 					cmp 	rsi, 0			; !*cmp()
 					je		.return
 					mov 	r8, rdi			; save **begin
@@ -24,7 +26,7 @@ _ft_list_sort:								; rdi = **list rsi = *cmp(d1, d2)
 					cmp		rax, 0			; if cmp > 0
 					jg		.swap
 					mov		rax, [r9 + 8]		; rax = current.next
-					mov		r9, rax		; r9 = next
+					mov		r9, rax			; r9 = next
 					jmp		.compare
 .swap:
 					mov		r10, [r9 + 8]	; r10 = next

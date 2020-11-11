@@ -6,7 +6,7 @@
 /*   By: ztawanna <ztawanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 08:22:06 by ztawanna          #+#    #+#             */
-/*   Updated: 2020/11/08 08:56:37 by ztawanna         ###   ########.fr       */
+/*   Updated: 2020/11/11 03:52:24 by ztawanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ typedef struct	s_list
 	struct	s_list *next;
 } 				t_list;
 
-int		ft_list_size(t_list *list);
-void	ft_list_push_front(t_list **list, void *data);
-int	ft_list_sort(t_list **list, int	(*cmp)());
-int		ft_atoi_base(char *str, char *base);
-
+int				ft_list_size(t_list *list);
+void			ft_list_push_front(t_list **list, void *data);
+void			ft_list_sort(t_list **list, int	(*cmp)());
+int				ft_atoi_base(char *str, char *base);
+void			ft_list_remove_if(t_list **list, void *data_ref, int (*cmp)(),\
+					void (*free_fnc)(void *));
 #endif
