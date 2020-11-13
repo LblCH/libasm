@@ -21,9 +21,15 @@ _ft_list_sort:								; rdi = **list rsi = *cmp(d1, d2)
 					push	rsi
 					mov		r10, [r9 + 8]	; d2 = current.next
 					mov		rsi, [r10]		;
+					push	rdi
+					push	r8
+					push	r9
 					call	rax				; (*cmp)(d1, d2)
+					pop		r9
+					pop		r8
+					pop		rdi
 					pop 	rsi
-					cmp		rax, 0			; if cmp > 0
+					cmp		eax, 0			; if cmp > 0
 					jg		.swap
 					mov		rax, [r9 + 8]		; rax = current.next
 					mov		r9, rax			; r9 = next

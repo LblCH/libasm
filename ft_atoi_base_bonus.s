@@ -79,9 +79,9 @@ _ft_atoi_base:											; rdi = *str rsi = *base
                         je		.positive
                         jmp		.zero_base
 
-.negative:				mov		r8, -1					; sign = -1
+.negative:				neg		r8						; sign = -1
 .positive:				inc		rcx						; i++
-
+						jmp		.issign
 .zero_base:
 						xor 	rbx, rbx				; j == 0
 

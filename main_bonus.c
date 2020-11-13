@@ -19,7 +19,7 @@ void	printf_list(t_list *list)
 	}
 }
 
-void	ft_free_fnc(void *ptr)
+void	ft_free(void *ptr)
 {
 	if (ptr)
 		free(ptr);
@@ -27,29 +27,30 @@ void	ft_free_fnc(void *ptr)
 
 int		main(void)
 {
-	t_list *list1 = NULL;
-	ft_list_push_front(&list1, strdup("1"));
-	ft_list_push_front(&list1, strdup("2"));
-	ft_list_push_front(&list1, strdup("5"));
-	ft_list_push_front(&list1, strdup("4"));
-	ft_list_push_front(&list1, strdup("5"));
+	t_list *list;
+	list = NULL;
 
 	printf("------------ft_list_size----------------\n");
-	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list));
 	printf("------------ft_list_push_front----------\n");
-	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
-	printf_list(list1);
+	ft_list_push_front(&list, strdup("1"));
+	ft_list_push_front(&list, strdup("2"));
+	ft_list_push_front(&list, strdup("3"));
+	ft_list_push_front(&list, strdup("4"));
+	ft_list_push_front(&list, strdup("5"));
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list));
+	printf_list(list);
 	printf("------------ft_list_sort----------------\n");
-	ft_list_sort(&list1, &ft_strcmp);
-	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
-	printf_list(list1);
+	ft_list_sort(&list, strcmp);
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list));
+	printf_list(list);
 	printf("------------ft_list_remove_if-----------\n");
-	ft_list_remove_if(&list1, "1", ft_strcmp, ft_free_fnc);
-	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list1));
-	printf_list(list1);
+	ft_list_remove_if(&list, "2", strcmp, ft_free);
+	printf("List size = %d\n~~~~~~~~~~~~~~~~\n", ft_list_size(list));
+	printf_list(list);
 	printf("------------ft_atoi_base----------------\n");
-	char *str = "  -114983fsifo5723";
+	char *str = "  --114983fsifo5723";
 	char *base = "0123456789";
-	printf("String %s in base %s = %d\n", str, base, ft_atoi_base(str, base));
+	printf("String %s in base \"%s\" = %d\n", str, base, ft_atoi_base(str, base));
 	return (0);
 }

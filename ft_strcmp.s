@@ -2,6 +2,9 @@
 				global _ft_strcmp
 
 _ft_strcmp:								; rdi = str1  rsi = str2
+				push	rcx
+				push	rdi
+				push	rsi
 				xor		rcx, rcx				; i = 0
 .check:
 				cmp		BYTE [rdi + rcx], 0
@@ -14,20 +17,10 @@ _ft_strcmp:								; rdi = str1  rsi = str2
 				inc		rcx						; i++
 				jmp		.check
 .result:
-				mov		dl, BYTE [rdi + rcx]	; res = str1[i]
-				sub		dl, BYTE [rsi + rcx]	; res -= str2[i]
-				cmp		dl, 0
-				jg		.first
-				jl		.second
-
-.equal:
-				mov		rax, 0
-				ret
-
-.first:
-				mov		rax, 1
-				ret
-
-.second:
-				mov		rax, -1
+				mov		al, byte [rdi + rcx]	; res = str1[i]
+				mov		cl, byte [rsi + rcx]	; res -= str2[i]
+				sub		rax, rcx
+				pop		rsi
+				pop		rdi
+				pop		rcx
 				ret
